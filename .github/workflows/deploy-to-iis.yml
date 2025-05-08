@@ -29,26 +29,29 @@ jobs:
       
     - name: Create web.config
       run: |
-        echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+        $webConfigContent = @"
+        <?xml version="1.0" encoding="UTF-8"?>
         <configuration>
           <system.webServer>
             <handlers>
-              <add name=\"iisnode\" path=\"app.js\" verb=\"*\" modules=\"iisnode\" />
+              <add name="iisnode" path="app.js" verb="*" modules="iisnode" />
             </handlers>
             <rewrite>
               <rules>
-                <rule name=\"nodejs\">
-                  <match url=\"(.*)\"/>
+                <rule name="nodejs">
+                  <match url="(.*)"/>
                   <conditions>
-                    <add input=\"{REQUEST_FILENAME}\" matchType=\"IsFile\" negate=\"true\"/>
+                    <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true"/>
                   </conditions>
-                  <action type=\"Rewrite\" url=\"app.js\"/>
+                  <action type="Rewrite" url="app.js"/>
                 </rule>
               </rules>
             </rewrite>
-            <iisnode watchedFiles=\"*.js;node_modules\\*;views\\*.ejs;routes\\*.js\" node_env=\"production\" />
+            <iisnode watchedFiles="*.js;node_modules\*;views\*.ejs;routes\*.js" node_env="production" />
           </system.webServer>
-        </configuration>" > web.config
+        </configuration>
+        "@
+        Set-Content -Path web.config -Value $webConfigContent
       shell: powershell
       
     - name: Package application
