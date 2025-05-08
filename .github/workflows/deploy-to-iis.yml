@@ -8,7 +8,7 @@ on:
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  build:
+  build-test:
     runs-on: windows-latest  # Using Windows runner for IIS deployment
     
     steps:
