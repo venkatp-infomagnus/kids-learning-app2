@@ -58,24 +58,6 @@ jobs:
       run: |
         Compress-Archive -Path .\* -DestinationPath app.zip -Force
       shell: powershell
-
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: app-package
-        path: app.zip
-        retention-days: 1
-
-  deploy:
-    name: Deploy to IIS
-    needs: build  # This job depends on the build job
-    runs-on: windows-latest
-    
-    steps:
-    - name: Download build artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: app-package
     
     - name: Check Web Deploy installation
       run: |
