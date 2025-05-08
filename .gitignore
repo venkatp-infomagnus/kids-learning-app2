@@ -31,4 +31,4 @@ build/
 
 # Public assets that are generated or not needed in version control
 public/js/*.min.js
-public/css/*.min.css
+public/css/*.min.cssnode_modules/
