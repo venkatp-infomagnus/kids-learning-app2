@@ -59,92 +59,92 @@ jobs:
         Compress-Archive -Path .\* -DestinationPath app.zip -Force
       shell: powershell
     
-    - name: Check Web Deploy installation
-      run: |
-          # Check if Web Deploy is installed on the remote server
-          # Create a PS session to the remote server
-          $securePassword = ConvertTo-SecureString ${{ secrets.REMOTE_PASSWORD }} -AsPlainText -Force
-          $secureUserName = ConvertTo-SecureString ${{ secrets.REMOTE_USERNAME }} -AsPlainText -Force
-          $credentials = New-Object System.Management.Automation.PSCredential ($secureUserName, $securePassword)
+    # - name: Check Web Deploy installation
+    #   run: |
+    #       # Check if Web Deploy is installed on the remote server
+    #       # Create a PS session to the remote server
+    #       $securePassword = ConvertTo-SecureString ${{ secrets.REMOTE_PASSWORD }} -AsPlainText -Force
+    #       $secureUserName = ConvertTo-SecureString ${{ secrets.REMOTE_USERNAME }} -AsPlainText -Force
+    #       $credentials = New-Object System.Management.Automation.PSCredential ($secureUserName, $securePassword)
           
-          $session = New-PSSession -ComputerName "49.205.242.221" -Credential $credentials
-          Invoke-Command -Session $session -ScriptBlock {
-            if (Test-Path "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe") {
-              Write-Host "Web Deploy is installed"
-              $true
-            } else {
-              Write-Host "Web Deploy is not installed"
-              # Install Web Deploy if not already installed (optional)
-              choco install webdeploy -y
-            }
-          }
-          Remove-PSSession $session
-      shell: powershell
+    #       $session = New-PSSession -ComputerName "49.205.242.221" -Credential $credentials
+    #       Invoke-Command -Session $session -ScriptBlock {
+    #         if (Test-Path "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe") {
+    #           Write-Host "Web Deploy is installed"
+    #           $true
+    #         } else {
+    #           Write-Host "Web Deploy is not installed"
+    #           # Install Web Deploy if not already installed (optional)
+    #           choco install webdeploy -y
+    #         }
+    #       }
+    #       Remove-PSSession $session
+    #   shell: powershell
   
-    - name: Deploy to IIS
-      run: |
-          # Create a PS session to the remote server
-          $securePassword = ConvertTo-SecureString ${{ secrets.REMOTE_PASSWORD }} -AsPlainText -Force
-          $secureUserName = ConvertTo-SecureString ${{ secrets.REMOTE_USERNAME }} -AsPlainText -Force
-          $credentials = New-Object System.Management.Automation.PSCredential ($secureUserName, $securePassword)
-          $session = New-PSSession -ComputerName "49.205.242.221" -Credential $credentials
+    # - name: Deploy to IIS
+    #   run: |
+    #       # Create a PS session to the remote server
+    #       $securePassword = ConvertTo-SecureString ${{ secrets.REMOTE_PASSWORD }} -AsPlainText -Force
+    #       $secureUserName = ConvertTo-SecureString ${{ secrets.REMOTE_USERNAME }} -AsPlainText -Force
+    #       $credentials = New-Object System.Management.Automation.PSCredential ($secureUserName, $securePassword)
+    #       $session = New-PSSession -ComputerName "49.205.242.221" -Credential $credentials
           
-          # Copy the zip file to the remote server
-          Write-Host "Copying application package to remote server"
-          Copy-Item -Path "app.zip" -Destination "C:\Temp\app.zip" -ToSession $session
+    #       # Copy the zip file to the remote server
+    #       Write-Host "Copying application package to remote server"
+    #       Copy-Item -Path "app.zip" -Destination "C:\Temp\app.zip" -ToSession $session
           
-          # Execute deployment commands on the remote server
-          Invoke-Command -Session $session -ScriptBlock {
-            # Define paths
-            $iisPath = "C:\inetpub\wwwroot\KidsApp"
-            $backupPath = "C:\inetpub\wwwroot\KidsApp_Backup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
+    #       # Execute deployment commands on the remote server
+    #       Invoke-Command -Session $session -ScriptBlock {
+    #         # Define paths
+    #         $iisPath = "C:\inetpub\wwwroot\KidsApp"
+    #         $backupPath = "C:\inetpub\wwwroot\KidsApp_Backup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
             
-            # Create backup if site exists
-            if (Test-Path $iisPath) {
-              Write-Host "Creating backup of existing application"
-              Copy-Item -Path $iisPath -Destination $backupPath -Recurse -Force
-            } else {
-              Write-Host "Creating new application directory"
-              New-Item -Path $iisPath -ItemType Directory -Force
-            }
+    #         # Create backup if site exists
+    #         if (Test-Path $iisPath) {
+    #           Write-Host "Creating backup of existing application"
+    #           Copy-Item -Path $iisPath -Destination $backupPath -Recurse -Force
+    #         } else {
+    #           Write-Host "Creating new application directory"
+    #           New-Item -Path $iisPath -ItemType Directory -Force
+    #         }
             
-            # Extract app to the IIS directory
-            Write-Host "Extracting new application files"
-            Expand-Archive -Path "C:\Temp\app.zip" -DestinationPath $iisPath -Force
+    #         # Extract app to the IIS directory
+    #         Write-Host "Extracting new application files"
+    #         Expand-Archive -Path "C:\Temp\app.zip" -DestinationPath $iisPath -Force
             
-            # Ensure IIS has the correct permissions
-            Write-Host "Setting IIS permissions"
-            $acl = Get-Acl $iisPath
-            $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
-            $acl.SetAccessRule($accessRule)
-            Set-Acl $iisPath $acl
+    #         # Ensure IIS has the correct permissions
+    #         Write-Host "Setting IIS permissions"
+    #         $acl = Get-Acl $iisPath
+    #         $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+    #         $acl.SetAccessRule($accessRule)
+    #         Set-Acl $iisPath $acl
             
-            # Check if the site already exists in IIS
-            Import-Module WebAdministration
-            if (!(Get-Website -Name "KidsApp")) {
-              Write-Host "Creating new IIS website"
-              New-Website -Name "KidsApp" -PhysicalPath $iisPath -Port 8080 -Force
-            } else {
-              Write-Host "Website already exists, updating physical path"
-              Set-ItemProperty "IIS:\Sites\KidsApp" -Name "physicalPath" -Value $iisPath
-            }
+    #         # Check if the site already exists in IIS
+    #         Import-Module WebAdministration
+    #         if (!(Get-Website -Name "KidsApp")) {
+    #           Write-Host "Creating new IIS website"
+    #           New-Website -Name "KidsApp" -PhysicalPath $iisPath -Port 8080 -Force
+    #         } else {
+    #           Write-Host "Website already exists, updating physical path"
+    #           Set-ItemProperty "IIS:\Sites\KidsApp" -Name "physicalPath" -Value $iisPath
+    #         }
             
-            # Install Node.js dependencies if needed
-            Set-Location $iisPath
-            npm install --production
+    #         # Install Node.js dependencies if needed
+    #         Set-Location $iisPath
+    #         npm install --production
             
-            # Restart the site to apply changes
-            Write-Host "Restarting IIS website"
-            Stop-Website -Name "KidsApp"
-            Start-Website -Name "KidsApp"
+    #         # Restart the site to apply changes
+    #         Write-Host "Restarting IIS website"
+    #         Stop-Website -Name "KidsApp"
+    #         Start-Website -Name "KidsApp"
             
-            # Clean up temp files
-            Remove-Item "C:\Temp\app.zip" -Force
+    #         # Clean up temp files
+    #         Remove-Item "C:\Temp\app.zip" -Force
             
-            Write-Host "Deployment completed successfully"
-          }
+    #         Write-Host "Deployment completed successfully"
+    #       }
           
-          # Clean up PS session
-          Remove-PSSession $session
-      shell: powershell
+    #       # Clean up PS session
+    #       Remove-PSSession $session
+    #   shell: powershell
      
