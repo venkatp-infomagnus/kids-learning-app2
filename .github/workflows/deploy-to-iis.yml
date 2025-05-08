@@ -55,14 +55,31 @@ jobs:
       run: |
         Compress-Archive -Path .\* -DestinationPath app.zip -Force
       shell: powershell
-      
+
+    - name: Check Web Deploy installation
+      run: |
+        # Check if Web Deploy is installed on the remote server
+        $session = New-PSSession -ComputerName "49.205.242.221" -Credential $credentials
+        Invoke-Command -Session $session -ScriptBlock {
+          if (Test-Path "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe") {
+            Write-Host "Web Deploy is installed"
+            $true
+          } else {
+            Write-Host "Web Deploy is not installed"
+            # Install Web Deploy if not already installed (optional)
+            choco install webdeploy -y
+          }
+        }
+        Remove-PSSession $session
+      shell: powershell
+
     - name: Deploy to IIS
       run: |
         # Install Web Deploy if not already installed (optional)
         # choco install webdeploy -y
         
         # Define paths
-        $iisPath = "C:\inetpub\wwwroot\KidsApp"
+        $iisPath = "\\49.205.242.221\\C$\\inetpub\\wwwroot\KidsApp"
         $backupPath = "C:\inetpub\wwwroot\KidsApp_Backup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
         
         # Create backup if site exists
