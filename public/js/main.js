@@ -1,7 +1,7 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add click sound effects to cards
-    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card');
+    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card, .fruit-card');
     
     cards.forEach(card => {
         card.addEventListener('click', function() {
@@ -48,6 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const shapeName = this.querySelector('.shape-name').textContent;
                 
                 speakText(`This is a ${shapeName}`);
+            }
+            
+            // If we're on the fruits page, speak the fruit name
+            if (this.classList.contains('fruit-card')) {
+                const fruitName = this.querySelector('.fruit-name').textContent;
+                
+                speakText(fruitName);
             }
         });
     });
