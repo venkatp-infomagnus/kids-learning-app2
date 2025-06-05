@@ -1,7 +1,7 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add click sound effects to cards
-    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card');
+    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card, .wonder-card');
     
     cards.forEach(card => {
         card.addEventListener('click', function() {
@@ -48,6 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const shapeName = this.querySelector('.shape-name').textContent;
                 
                 speakText(`This is a ${shapeName}`);
+            }
+            
+            // If we're on the 7 wonders page, speak the wonder name and location
+            if (this.classList.contains('wonder-card')) {
+                const wonderName = this.querySelector('.wonder-name').textContent;
+                const wonderLocation = this.querySelector('.wonder-location').textContent;
+                
+                speakText(`${wonderName} is located in ${wonderLocation}`);
             }
         });
     });

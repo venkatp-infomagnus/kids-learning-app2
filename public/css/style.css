@@ -493,3 +493,77 @@ footer {
         font-size: 1.8rem;
     }
 }
+
+/* 7 Wonders Page Styles */
+.wonders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.wonder-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.wonder-card:hover {
+    transform: scale(1.05);
+    background-color: #FFE66D;
+}
+
+.wonder-image {
+    height: 150px;
+    margin-bottom: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Wonder Images */
+#great-wall {
+    background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#petra {
+    background-image: url('https://images.unsplash.com/photo-1539650116574-75c0c6d73a0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#christ-redeemer {
+    background-image: url('https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#machu-picchu {
+    background-image: url('https://images.unsplash.com/photo-1539057724206-a28e12c2ee48?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#chichen-itza {
+    background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#colosseum {
+    background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#taj-mahal {
+    background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+.wonder-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4ECDC4;
+    margin-bottom: 5px;
+}
+
+.wonder-location {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+}
+}
