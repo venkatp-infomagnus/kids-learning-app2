@@ -42,6 +42,10 @@ function createApp() {
     res.render('animals', { title: 'Learn Animals' });
   });
   
+  app.get('/wonders', (req, res) => {
+    res.render('wonders', { title: 'Learn 7 Wonders' });
+  });
+  
   return app;
 }
 
@@ -79,6 +83,11 @@ describe('Kids Learning App Routes', () => {
   
   test('GET /animals should respond with 200 status code', async () => {
     const response = await request(app).get('/animals');
+    expect(response.statusCode).toBe(200);
+  });
+  
+  test('GET /wonders should respond with 200 status code', async () => {
+    const response = await request(app).get('/wonders');
     expect(response.statusCode).toBe(200);
   });
   
@@ -123,6 +132,11 @@ describe('Page Content Tests', () => {
   test('Animals page should mention animal learning', async () => {
     const response = await request(app).get('/animals');
     expect(response.text).toContain('Learn Animals');
+  });
+  
+  test('Wonders page should mention 7 wonders learning', async () => {
+    const response = await request(app).get('/wonders');
+    expect(response.text).toContain('Learn 7 Wonders');
   });
 });
 
@@ -173,7 +187,7 @@ describe('Layout Tests', () => {
   
   test('All pages should use the common layout', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/wonders'];
     
     for (const route of routes) {
       const response = await request(app).get(route);
@@ -188,7 +202,7 @@ describe('Layout Tests', () => {
   
   test('All pages should include style.css', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/wonders'];
     
     for (const route of routes) {
       const response = await request(app).get(route);
