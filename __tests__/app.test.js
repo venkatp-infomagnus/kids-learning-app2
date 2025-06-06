@@ -42,6 +42,10 @@ function createApp() {
     res.render('animals', { title: 'Learn Animals' });
   });
   
+  app.get('/birds', (req, res) => {
+    res.render('birds', { title: 'Learn Birds' });
+  });
+  
   app.get('/wonders', (req, res) => {
     res.render('wonders', { title: 'Learn 7 Wonders' });
   });
@@ -83,6 +87,11 @@ describe('Kids Learning App Routes', () => {
   
   test('GET /animals should respond with 200 status code', async () => {
     const response = await request(app).get('/animals');
+    expect(response.statusCode).toBe(200);
+  });
+  
+  test('GET /birds should respond with 200 status code', async () => {
+    const response = await request(app).get('/birds');
     expect(response.statusCode).toBe(200);
   });
   
@@ -132,6 +141,11 @@ describe('Page Content Tests', () => {
   test('Animals page should mention animal learning', async () => {
     const response = await request(app).get('/animals');
     expect(response.text).toContain('Learn Animals');
+  });
+  
+  test('Birds page should mention bird learning', async () => {
+    const response = await request(app).get('/birds');
+    expect(response.text).toContain('Learn Birds');
   });
   
   test('Wonders page should mention 7 wonders learning', async () => {
@@ -187,7 +201,7 @@ describe('Layout Tests', () => {
   
   test('All pages should use the common layout', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/wonders'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders'];
     
     for (const route of routes) {
       const response = await request(app).get(route);
@@ -202,7 +216,7 @@ describe('Layout Tests', () => {
   
   test('All pages should include style.css', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/wonders'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders'];
     
     for (const route of routes) {
       const response = await request(app).get(route);

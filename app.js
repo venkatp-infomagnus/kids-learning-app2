@@ -39,6 +39,10 @@ app.get('/animals', (req, res) => {
   res.render('animals', { title: 'Learn Animals' });
 });
 
+app.get('/birds', (req, res) => {
+  res.render('birds', { title: 'Learn Birds' });
+});
+
 app.get('/wonders', (req, res) => {
   res.render('wonders', { title: 'Learn 7 Wonders' });
 });
