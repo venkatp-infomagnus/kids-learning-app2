@@ -422,6 +422,55 @@ main {
     background-image: url('https://images.unsplash.com/photo-1555852095-64e7428df0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
 }
 
+/* Bird Images */
+#eagle {
+    background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#parrot {
+    background-image: url('https://images.unsplash.com/photo-1544923246-77307dd77581?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#owl {
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#robin {
+    background-image: url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#peacock {
+    background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#crow {
+    background-image: url('https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#hummingbird {
+    background-image: url('https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#woodpecker {
+    background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#flamingo {
+    background-image: url('https://images.unsplash.com/photo-1520637836862-4d197d17c52a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#canary {
+    background-image: url('https://images.unsplash.com/photo-1612024188504-c4c7acf6d05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#swan {
+    background-image: url('https://images.unsplash.com/photo-1551800094-7eaf0f69c7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#cardinal {
+    background-image: url('https://images.unsplash.com/photo-1519111870302-e147c73bebe6?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
 .animal-name {
     font-size: 1.3rem;
     font-weight: bold;
