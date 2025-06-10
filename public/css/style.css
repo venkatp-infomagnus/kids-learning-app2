@@ -664,4 +664,95 @@ footer {
     color: #666;
     font-style: italic;
 }
+
+/* Toys Page Styles */
+.toys-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.toy-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.toy-card:hover {
+    transform: scale(1.05);
+    background-color: #FFE8F0;
+}
+
+.toy-image {
+    height: 150px;
+    margin-bottom: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Toy Images */
+#teddy-bear {
+    background-image: url('https://images.unsplash.com/photo-1589254065909-b7086229d08c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#blocks {
+    background-image: url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#doll {
+    background-image: url('https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#car {
+    background-image: url('https://images.unsplash.com/photo-1581235720704-06d3acfcb4dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#ball {
+    background-image: url('https://images.unsplash.com/photo-1542144582-1ba00456b5e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#puzzle {
+    background-image: url('https://images.unsplash.com/photo-1580805315063-82fa2771e98c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#train {
+    background-image: url('https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#robot {
+    background-image: url('https://images.unsplash.com/photo-1558137623-752d586611f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#kite {
+    background-image: url('https://images.unsplash.com/photo-1516962080544-eac695c93791?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#drum {
+    background-image: url('https://images.unsplash.com/photo-1543443374-789529da3ea7?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#playhouse {
+    background-image: url('https://images.unsplash.com/photo-1596245830906-ce920e671186?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#art-set {
+    background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+.toy-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #FF6B6B;
+    margin-bottom: 5px;
+}
+
+.toy-description {
+    font-size: 1rem;
+    color: #666;
 }

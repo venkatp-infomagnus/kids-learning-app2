@@ -1,7 +1,7 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add click sound effects to cards
-    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card, .wonder-card, .plant-card');
+    const cards = document.querySelectorAll('.letter-card, .number-card, .color-card, .shape-card, .animal-card, .wonder-card, .plant-card, .toy-card');
     
     cards.forEach(card => {
         card.addEventListener('click', function() {
@@ -57,13 +57,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 speakText(`${wonderName} is located in ${wonderLocation}`);
             }
-            
-            // If we're on the plants page, speak the plant name and characteristic  
+              // If we're on the plants page, speak the plant name and characteristic  
             if (this.classList.contains('animal-card') && window.location.pathname === '/plants') {
                 const plantName = this.querySelector('.animal-name').textContent;
                 const plantCharacteristic = this.querySelector('.animal-sound').textContent;
                 
                 speakText(`${plantName} is ${plantCharacteristic}`);
+            }
+            
+            // If we're on the toys page, speak the toy name and description
+            if (this.classList.contains('toy-card')) {
+                const toyName = this.querySelector('.toy-name').textContent;
+                const toyDescription = this.querySelector('.toy-description').textContent;
+                
+                speakText(`${toyName}: ${toyDescription}`);
             }
         });
     });
