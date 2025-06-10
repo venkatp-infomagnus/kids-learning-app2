@@ -54,6 +54,10 @@ function createApp() {
     res.render('plants', { title: 'Learn Plants' });
   });
   
+  app.get('/flowers', (req, res) => {
+    res.render('flowers', { title: 'Learn Flowers' });
+  });
+  
   return app;
 }
 
@@ -106,6 +110,11 @@ describe('Kids Learning App Routes', () => {
   
   test('GET /plants should respond with 200 status code', async () => {
     const response = await request(app).get('/plants');
+    expect(response.statusCode).toBe(200);
+  });
+  
+  test('GET /flowers should respond with 200 status code', async () => {
+    const response = await request(app).get('/flowers');
     expect(response.statusCode).toBe(200);
   });
   
@@ -166,6 +175,11 @@ describe('Page Content Tests', () => {
     const response = await request(app).get('/plants');
     expect(response.text).toContain('Learn Plants');
   });
+  
+  test('Flowers page should mention flower learning', async () => {
+    const response = await request(app).get('/flowers');
+    expect(response.text).toContain('Learn Flowers');
+  });
 });
 
 describe('Static File Serving Tests', () => {
@@ -215,7 +229,7 @@ describe('Layout Tests', () => {
   
   test('All pages should use the common layout', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders', '/plants'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders', '/plants', '/flowers'];
     
     for (const route of routes) {
       const response = await request(app).get(route);
@@ -230,7 +244,7 @@ describe('Layout Tests', () => {
   
   test('All pages should include style.css', async () => {
     // Get all main routes
-    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders', '/plants'];
+    const routes = ['/', '/alphabet', '/numbers', '/colors', '/shapes', '/animals', '/birds', '/wonders', '/plants', '/flowers'];
     
     for (const route of routes) {
       const response = await request(app).get(route);

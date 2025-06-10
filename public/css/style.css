@@ -520,6 +520,55 @@ main {
     background-image: url('https://images.unsplash.com/photo-1574026547334-2ff6e7f75e75?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
 }
 
+/* Flower Images */
+#cherry-blossom {
+    background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#jasmine {
+    background-image: url('https://images.unsplash.com/photo-1594736797933-d0409ba7f98b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#marigold {
+    background-image: url('https://images.unsplash.com/photo-1592500035676-7d71b3d4d9b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#petunia {
+    background-image: url('https://images.unsplash.com/photo-1565011523534-747a8601f10a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#hibiscus {
+    background-image: url('https://images.unsplash.com/photo-1551298370-f9a7e0125195?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#carnation {
+    background-image: url('https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#iris {
+    background-image: url('https://images.unsplash.com/photo-1552879890-78c9e0d8a4e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#poppy {
+    background-image: url('https://images.unsplash.com/photo-1594736797933-d0409ba7f98b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#daffodil {
+    background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#peony {
+    background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#magnolia {
+    background-image: url('https://images.unsplash.com/photo-1551298370-f9a7e0125195?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
+#pansy {
+    background-image: url('https://images.unsplash.com/photo-1565011523534-747a8601f10a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');
+}
+
 .animal-name {
     font-size: 1.3rem;
     font-weight: bold;
